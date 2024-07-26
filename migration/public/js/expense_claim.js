@@ -17,4 +17,8 @@ frappe.ui.form.on("Expense Claim", {
         
     })
     },
+    onload: function(frm) {
+        // Ensure the field is set to non-mandatory
+        frm.set_df_property('expense_approver', 'reqd', 0);
+    },
 })
