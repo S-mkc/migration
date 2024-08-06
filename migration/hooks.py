@@ -12,7 +12,7 @@ app_license = "mit"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/migration/css/migration.css"
 # app_include_js = "/assets/migration/js/migration.js"
-# app_include_js = "/assets/migration/js/hide.js"
+app_include_js = "/assets/migration/js/hide.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/migration/css/migration.css"
