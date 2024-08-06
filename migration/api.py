@@ -2,7 +2,7 @@ import frappe
 from datetime import datetime
 import datetime as real_Date
 import nepali_datetime
-# import pandas as pd
+import pandas as pd
 import requests
 from frappe.utils import today
 

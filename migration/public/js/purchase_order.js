@@ -5,66 +5,66 @@ frappe.ui.form.on("Purchase Order", {
     {
         
          
-        if(cur_frm.doc.workflow_state == "Pending Approval" ){
-             if (frappe.session.logged_in_user == "Administrator" || frappe.session.logged_in_user == "umesh.sharma@hpl.com.np"){
-                  $("button:contains('Cancel')").show();
+        // if(cur_frm.doc.workflow_state == "Pending Approval" ){
+        //      if (frappe.session.logged_in_user == "Administrator" || frappe.session.logged_in_user == "umesh.sharma@hpl.com.np"){
+        //           $("button:contains('Cancel')").show();
                   
-             }
+        //      }
         
-        }
+        // }
              // if(frappe.session.user == frm.doc.custom_purchase_approver__id){
                 //   $('.actions-btn-group').show()
              // }
         
-        if(cur_frm.doc.workflow_state == "Approved" )
-               {
-                frappe.db.get_value("Item", cur_frm.doc.items[0].item_code, 'is_stock_item').then( r => { 
-                  if  ( r.message.is_stock_item == 1 && frappe.session.logged_in_user != "keshav.kc@hpl.com.np" || frappe.session.logged_in_user != "Administrator")
+        // if(cur_frm.doc.workflow_state == "Approved" )
+        //        {
+        //         frappe.db.get_value("Item", cur_frm.doc.items[0].item_code, 'is_stock_item').then( r => { 
+        //           if  ( r.message.is_stock_item == 1 && frappe.session.logged_in_user != "keshav.kc@hpl.com.np" || frappe.session.logged_in_user != "Administrator")
     
-                  {
-                         $("button:contains('Create')").hide(); 
-                          console.log("Keshav")
-                  }
-                    if  (  frappe.session.logged_in_user == "Administrator" || frappe.session.logged_in_user == "keshav.kc@hpl.com.np" || frappe.session.logged_in_user == "umesh.sharma@hpl.com.np" || frappe.session.logged_in_user == "narayan.devkota@hpl.com.np" || frappe.session.logged_in_user == "rajiv.ramdam@hpl.com.np" || frappe.session.logged_in_user == "cur_frm.doc.custom_initiator" || frappe.session.logged_in_user == "om.pokharel@hpl.com.np")
+        //           {
+        //                  $("button:contains('Create')").hide(); 
+        //                   console.log("Keshav")
+        //           }
+        //             if  (  frappe.session.logged_in_user == "Administrator" || frappe.session.logged_in_user == "keshav.kc@hpl.com.np" || frappe.session.logged_in_user == "umesh.sharma@hpl.com.np" || frappe.session.logged_in_user == "narayan.devkota@hpl.com.np" || frappe.session.logged_in_user == "rajiv.ramdam@hpl.com.np" || frappe.session.logged_in_user == "cur_frm.doc.custom_initiator" || frappe.session.logged_in_user == "om.pokharel@hpl.com.np")
     
-                  {
-                         $("button:contains('Create')").show(); 
+        //           {
+        //                  $("button:contains('Create')").show(); 
                           
-                  }
-                    // cur_frm.refresh_fields();
-                    if (frappe.session.logged_in_user == "Administrator" || frappe.session.logged_in_user == "umesh.sharma@hpl.com.np" || frappe.session.logged_in_user == "surya.karki@hpl.com.np")
-                    {
-                        $("button:contains('Cancel')").show();
-                    }
+        //           }
+        //             // cur_frm.refresh_fields();
+        //             if (frappe.session.logged_in_user == "Administrator" || frappe.session.logged_in_user == "umesh.sharma@hpl.com.np" || frappe.session.logged_in_user == "surya.karki@hpl.com.np")
+        //             {
+        //                 $("button:contains('Cancel')").show();
+        //             }
     
-                    if(frappe.session.logged_in_user == "narayan.devkota@hpl.com.np")
-                    {
-                        var bt = ['Purchase Invoice', 'Payment',  'Payment Request', 'Subscription']
-                        bt.forEach(function(bt){
-                            frm.page.remove_inner_button(bt, 'Create')
-                        });
-                    }
+        //             if(frappe.session.logged_in_user == "narayan.devkota@hpl.com.np")
+        //             {
+        //                 var bt = ['Purchase Invoice', 'Payment',  'Payment Request', 'Subscription']
+        //                 bt.forEach(function(bt){
+        //                     frm.page.remove_inner_button(bt, 'Create')
+        //                 });
+        //             }
                     
     
-                })
+        //         })
     
-                frappe.db.get_value("Item", cur_frm.doc.items[0].item_code, 'is_stock_item').then( r => {
-                    if  ( r.message.is_stock_item == 0 && frappe.session.logged_in_user != frm.doc.custom_initiator || frappe.session.logged_in_user != "Administrator")
+        //         frappe.db.get_value("Item", cur_frm.doc.items[0].item_code, 'is_stock_item').then( r => {
+        //             if  ( r.message.is_stock_item == 0 && frappe.session.logged_in_user != frm.doc.custom_initiator || frappe.session.logged_in_user != "Administrator")
     
-                    {
-                           $("button:contains('Create')").show(); 
+        //             {
+        //                    $("button:contains('Create')").show(); 
                             
-                    }
+        //             }
     
     
-                })
-                   // refresh: function(frm){
-                      //  if  (  frappe.session.logged_in_user == "Administrator" || frappe.session.logged_in_user == "cur_frm.doc.custom_initiator") {
-                         //   $("button:contains('Create')").show(); 
-                      //  }
-                   // }
+        //         })
+        //            // refresh: function(frm){
+        //               //  if  (  frappe.session.logged_in_user == "Administrator" || frappe.session.logged_in_user == "cur_frm.doc.custom_initiator") {
+        //                  //   $("button:contains('Create')").show(); 
+        //               //  }
+        //            // }
                        
-                   }
+        //            }
         
         if (!cur_frm.doc.custom_initiator)
         {
@@ -187,11 +187,11 @@ frappe.ui.form.on("Purchase Order", {
         // 	$('.actions-btn-group').show()
      //   }
         
-        if(cur_frm.doc.workflow_state == "Pending Approval" ){
-             if (frappe.session.logged_in_user == "Administrator" || frappe.session.logged_in_user == "umesh.sharma@hpl.com.np"){
-                  $("button:contains('Cancel')").show();
-             }
-        }
+        // if(cur_frm.doc.workflow_state == "Pending Approval" ){
+        //      if (frappe.session.logged_in_user == "Administrator" || frappe.session.logged_in_user == "umesh.sharma@hpl.com.np"){
+        //           $("button:contains('Cancel')").show();
+        //      }
+        // }
         // if(cur_frm.doc.workflow_state == "Pending Approval" ){
         // 	 if (frappe.session.logged_in_user == frm.doc.custom_purchase_approver__id){
         // 		 $('.actions-btn-group').show()
@@ -361,7 +361,7 @@ frappe.ui.form.on("Purchase Order", {
         // validate(frm) 
         // 	{
         //     frappe.call({
-     //            method: 'raindrop.custom_code.purchase_order.add_approver',
+     //            method: 'migration.custom_code.purchase_order.add_approver',
      //            args: {
      //                owner: frappe.session.user_email
      //            },
@@ -376,11 +376,12 @@ frappe.ui.form.on("Purchase Order", {
                 
      //        })
         // frappe.call({
-     //            method: 'raindrop.custom_code.purchase_order.add_approver',
+     //            method: 'migration.custom_code.purchase_order.add_approver',
      //            args: {
      //                owner: frm.doc.custom_email_initiator
      //            },
            
+     
      //            callback: (r) => {
      //                frm.set_value('custom_initiator_manager', r.message)
      //            },
@@ -481,7 +482,7 @@ frappe.ui.form.on("Purchase Order", {
             //  if(!cur_frm.doc.custom_initiator)
             //  {
             // frappe.call({
-            //     method: 'raindrop.custom_code.purchase_order.get_approver',
+            //     method: 'migration.custom_code.purchase_order.get_approver',
             //     args: {
             //         owner: frm.doc.owner,
             

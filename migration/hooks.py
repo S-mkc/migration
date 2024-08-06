@@ -12,6 +12,7 @@ app_license = "mit"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/migration/css/migration.css"
 # app_include_js = "/assets/migration/js/migration.js"
+app_include_js = "/assets/migration/js/hide.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/migration/css/migration.css"
@@ -133,9 +134,9 @@ doc_events = {
         "on_update":"migration.custom_code.expense_claim.on_update",
     },
     "Purchase Order": {
-		"on_update": "raindrop.custom_code.purchase_order.on_update",
-	    "validate": "raindrop.custom_code.purchase_order.before_insert",
-		"on_cancel": "raindrop.custom_code.purchase_order.on_cancel",
+		"on_update": "migration.custom_code.purchase_order.on_update",
+	    "validate": "migration.custom_code.purchase_order.before_insert",
+		"on_cancel": "migration.custom_code.purchase_order.on_cancel",
 		# "on_trash": "method"
 	},
 }
@@ -172,6 +173,10 @@ doc_events = {
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "migration.event.get_events"
 # }
+override_whitelisted_methods = {
+    "migration.utils.api.create_user": "migration.utils.api.create_user"
+}
+
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
