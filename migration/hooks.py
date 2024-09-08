@@ -29,7 +29,8 @@ app_include_js = "/assets/migration/js/hide.js"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {"Expense Claim" : "public/js/expense_claim.js", "Purchase Order" : "public/js/purchase_order.js"}
+doctype_js = {"Expense Claim" : "public/js/expense_claim.js", "Purchase Order" : "public/js/purchase_order.js",
+	     "Out Of Office slip" : "public/js/out_of_office.js"}
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -139,6 +140,8 @@ doc_events = {
 		"on_cancel": "migration.custom_code.purchase_order.on_cancel",
 		# "on_trash": "method"
 	},
+    "Out Of Office Slip" : {
+	    "on_update": "migration.custom_code.out_of_office_slip.on_update",
 }
 
 # Scheduled Tasks
