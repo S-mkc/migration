@@ -143,7 +143,7 @@ doc_events = {
     "Out Of Office Slip" : {
 	    "on_update": "migration.custom_code.out_of_office_slip.on_update",
 }
-
+}
 # Scheduled Tasks
 # ---------------
 
