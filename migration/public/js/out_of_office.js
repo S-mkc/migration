@@ -1,7 +1,7 @@
 frappe.ui.form.on("Out Of Office Slip", {
 onload_post_render: function(frm){
 	
-if (frm.doc.workflow_state == "Pending" && frm.doc.custom_approver_id != frappe.session.logged_in_user)
+if (frm.doc.workflow_state == "Pending" && frm.doc.custom_approved_id_office != frappe.session.logged_in_user)
 	 {
 		$('.actions-btn-group').hide()
 	}
@@ -26,7 +26,7 @@ if (frm.doc.workflow_state == "Pending" && frm.doc.custom_approver_id != frappe.
             },
             freeze: true,
             callback: (r) => {
-                frm.doc.custom_approver_id = r.message;
+                frm.doc.custom_approved_id_office = r.message;
                 frm.refresh_fields();
             },
             error: (r) => {
