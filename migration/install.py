@@ -27,7 +27,7 @@ import frappe
 @frappe.whitelist()
 def create_salary_component():
     doc = frappe.new_doc("Salary Component")
-    doc.name = "Basic Salary"
+    doc.salary_component = "Basic Salary"
     doc.salary_component_abbr = "BASIC"
     doc.type = "Earning"
     doc.description = "Basic salary component"
