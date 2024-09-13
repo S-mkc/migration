@@ -48,6 +48,7 @@ def create_salary_component():
     formula = ctc * .083
     # doc.amount = 50000
     doc.s_flexible_benefits = 0
-    doc.insert()
+    # doc.insert()
+    doc.save()
     frappe.db.commit()  # Optional, only if you're handling multiple operations
 
