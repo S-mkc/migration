@@ -40,7 +40,9 @@ def create_salary_component():
     doc.remove_if_zero_valued = 1
     doc.disabled = 0
     doc.condition = ""
-    doc.amount = 50000
+    doc.amount_based_on_formula = 1
+    formula = ctc * .083
+    # doc.amount = 50000
     doc.s_flexible_benefits = 0
     doc.insert()
     frappe.db.commit()  # Optional, only if you're handling multiple operations
