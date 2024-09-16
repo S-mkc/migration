@@ -48,8 +48,9 @@ def create_salary_component():
     doc.formula_read_only = 1
     # doc.amount = 50000
     doc.s_flexible_benefits = 0
-    doc.save()
-    # frappe.db.commit()  # Optional, only if you're handling multiple operations
+    # doc.save()
+    doc.insert()
+   
 
     # Grade Amount
     doc = frappe.new_doc("Salary Component")
@@ -65,13 +66,12 @@ def create_salary_component():
     doc.do_not_include_in_total = 0
     doc.remove_if_zero_valued = 1
     doc.disabled = 0
-    company = frappe.get_value("Company", "name")
+    company = frappe.get_all("Company", fields=["name"])
     doc.append("accounts", {
         "company" : company,
-        "account" : "Cash - Y"
+        "account" : "Salary - Y"
     })
     doc.condition = ""
     doc.s_flexible_benefits = 0
-    doc.save()
-    # doc.insert()
+    doc.insert()
     # frappe.db.commit()
