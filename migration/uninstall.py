@@ -16,5 +16,5 @@ def delete_salary_component():
     # Delete each specified salary component
     salary_component_names = create_salary_component()
     for name in salary_component_names:
-        if frappe.db.exists("Salary Component", name):
-            frappe.delete_doc("Salary Component", name)
+        # if frappe.db.exists("Salary Component", name):
+        frappe.delete_doc("Salary Component", name)
