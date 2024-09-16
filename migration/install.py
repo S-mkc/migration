@@ -74,8 +74,8 @@ def create_fiscal_year():
     doc.year = "Nepal Fiscal Year"
     doc.disabled = 0
     doc.is_short_year = 0
-    doc.year_start_date = "17-09-2024"
-    doc.year_end_date = "16-19-2025"
+    doc.year_start_date = "16-07-2025"
+    doc.year_end_date = "15-07-2026"
     doc.append("companies", {
         "company" : company,
         # "account" : "Salary - Y"
