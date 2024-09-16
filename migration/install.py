@@ -67,7 +67,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : "yarsa",
-        "account" : "abc"
+        "account" : "Cash - Y"
     })
     doc.condition = ""
     doc.s_flexible_benefits = 0
