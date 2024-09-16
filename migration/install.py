@@ -69,6 +69,5 @@ def create_fiscal_year():
     fiscal_year.insert()
 
 def install():
+    create_salary_component()
     create_fiscal_year()
-
-    return create_salary_component()
