@@ -1,7 +1,7 @@
 import frappe
 # import datetime
 # import nepali_datetime
-
+from migration.api import ad_to_bs 
 @frappe.whitelist()
 def create_salary_component():
     company = frappe.get_all("Company", fields=["name"])
