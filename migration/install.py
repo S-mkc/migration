@@ -75,9 +75,9 @@ def create_fiscal_year():
     doc.disabled = 0
     doc.is_short_year = 0
     # doc.year_start_date = '2025-07-16'
-     doc.year_start_date = ad_to_bs(today_ad)  # Convert today's date to BS for start date
+    doc.year_start_date = ad_to_bs(today_ad)  # Convert today's date to BS for start date
     # doc.year_end_date = '2026-07-15'
-     doc.year_end_date = ad_to_bs(frappe.utils.add_days(today_ad, 364))  # Convert end date to BS
+    doc.year_end_date = ad_to_bs(frappe.utils.add_days(today_ad, 364))  # Convert end date to BS
     doc.append("companies", {
         "company" : company,
         # "account" : "Salary - Y"
