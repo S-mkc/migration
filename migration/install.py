@@ -40,15 +40,12 @@ def create_salary_component():
     doc.remove_if_zero_valued = 1
     doc.disabled = 0
     doc.condition = ""
-    doc.amount_based_on_formula = 1
-    ctc_records = frappe.get_all('Employee', fields = ['ctc'])
-    ctc = ctc_records[0].ctc if ctc_records else 0  # Get the first employee's CTC or default to 0
-    # return ctc
-    formula = ctc * .083
-    formula = ctc * .083
+    ctc_records = frappe.get_all('Employee', fields=['ctc'])
+    ctc = ctc_records[0].ctc if ctc_records else 0 
+    if doc.amount_based_on_formula == 1:
+        doc.formula = ctc * 0.083
     # doc.amount = 50000
     doc.s_flexible_benefits = 0
-    # doc.insert()
-    doc.save()
+    doc.insert()
     frappe.db.commit()  # Optional, only if you're handling multiple operations
 
