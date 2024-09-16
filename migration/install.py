@@ -52,3 +52,5 @@ def create_salary_component():
     doc.s_flexible_benefits = 0
     doc.insert()
     # frappe.db.commit()
+
+    return create_salary_component()
