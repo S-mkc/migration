@@ -65,7 +65,7 @@ def create_salary_component():
     doc.do_not_include_in_total = 0
     doc.remove_if_zero_valued = 1
     doc.disabled = 0
-    company = frappe.get_value("Company", {"is_default": 1}, "name")
+    company = frappe.get_value("Company", "name")
     doc.append("accounts", {
         "company" : company,
         "account" : "Cash - Y"
