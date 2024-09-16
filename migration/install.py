@@ -1,6 +1,6 @@
 import frappe
-import datetime
-import nepali_datetime
+# import datetime
+# import nepali_datetime
 
 @frappe.whitelist()
 def create_salary_component():
@@ -68,6 +68,17 @@ def create_salary_component():
 #         "nepali_end_date": nepali_datetime(2080, 1, 1).to_gregorian(),  # Convert Nepali to Gregorian
 #     })
 #     fiscal_year.insert()
+def create_fiscal_year():
+    doc = frappe.new_doc("New Fiscal Year")
+    doc.year = "Nepal Fiscal Year"
+    doc.disabled = 0
+    doc.is_short_year = 0
+    doc.year_start_date = "17-09-2024"
+    doc.year_end_date = "16-19-2025"
+    doc.append("companies", {
+        "company" : company,
+        # "account" : "Salary - Y"
+    })
 
 def install():
     create_salary_component()
