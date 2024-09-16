@@ -26,6 +26,7 @@ import frappe
 
 @frappe.whitelist()
 def create_salary_component():
+    company = frappe.get_all("Company", fields=["name"])
     doc = frappe.new_doc("Salary Component")
     doc.salary_component = "Basic Salary"
     doc.salary_component_abbr = "BASIC"
@@ -40,8 +41,10 @@ def create_salary_component():
     doc.remove_if_zero_valued = 1
     doc.disabled = 0
     doc.condition = ""
-    # ctc_records = frappe.get_all('Employee', fields=['ctc'])
-    # ctc = ctc_records[0].ctc if ctc_records else 0 
+    doc.append("accounts", {
+        "company" : company,
+        "account" : "Salary - Y"
+    })
     doc.amount_based_on_formula = 1
     # if doc.amount_based_on_formula:
     doc.formula = "ctc * 0.083"
@@ -66,7 +69,6 @@ def create_salary_component():
     doc.do_not_include_in_total = 0
     doc.remove_if_zero_valued = 1
     doc.disabled = 0
-    company = frappe.get_all("Company", fields=["name"])
     doc.append("accounts", {
         "company" : company,
         "account" : "Salary - Y"
