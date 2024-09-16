@@ -69,6 +69,7 @@ def create_salary_component():
 #     })
 #     fiscal_year.insert()
 def create_fiscal_year():
+    company = frappe.get_all("Company", fields=["name"])
     doc = frappe.new_doc("Fiscal Year")
     doc.year = "Nepal Fiscal Year"
     doc.disabled = 0
