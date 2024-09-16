@@ -78,6 +78,7 @@ before_install = "migration.install.create_salary_component"
 # ------------
 
 # before_uninstall = "migration.uninstall.before_uninstall"
+before_uninstall = "migration.uninstall.delete_salary_component"
 # after_uninstall = "migration.uninstall.after_uninstall"
 
 # Integration Setup
