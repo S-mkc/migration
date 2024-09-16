@@ -10,10 +10,10 @@
 #             frappe.delete_doc("Salary Component", name)
 
 import frappe
-from .install import created_salary_components  # Import the list of created components
+from .install import create_salary_component  # Import the list of created components
 
 def delete_salary_component():
     # Delete each specified salary component
-    for name in created_salary_components:
+    for name in create_salary_component:
         if frappe.db.exists("Salary Component", name):
             frappe.delete_doc("Salary Component", name)
