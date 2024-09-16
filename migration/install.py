@@ -80,6 +80,7 @@ def create_fiscal_year():
         "company" : company,
         # "account" : "Salary - Y"
     })
+    doc.insert()
 
 def install():
     create_salary_component()
