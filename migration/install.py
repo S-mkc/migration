@@ -52,5 +52,23 @@ def create_salary_component():
     doc.s_flexible_benefits = 0
     doc.insert()
     # frappe.db.commit()
+    # 
+# from nepali_date import NepaliDate  # Import the Nepali date library
+import datetime
+import nepali_datetime
+def create_fiscal_year():
+    # Example of creating a fiscal year with Nepali date support
+    fiscal_year = frappe.get_doc({
+        "doctype": "Fiscal Year",
+        "name": "Fiscal Year 2079/80",  # Example name
+        "start_date": "2022-04-14",  # Gregorian start date
+        "end_date": "2023-04-13",  # Gregorian end date
+        "nepali_start_date": nepali_datetime(2079, 1, 1).to_gregorian(),  # Convert Nepali to Gregorian
+        "nepali_end_date": nepali_datetime(2080, 1, 1).to_gregorian(),  # Convert Nepali to Gregorian
+    })
+    fiscal_year.insert()
+
+def install():
+    create_fiscal_year()
 
     return create_salary_component()

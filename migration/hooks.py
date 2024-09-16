@@ -71,7 +71,9 @@ doctype_js = {"Expense Claim" : "public/js/expense_claim.js", "Purchase Order" :
 # ------------
 
 # before_install = "migration.install.before_install"
-before_install = "migration.install.create_salary_component"
+# before_install = "migration.install.create_salary_component"
+before_install = "migration.install.install"
+
 # after_install = "migration.install.after_install"
 
 # Uninstallation
