@@ -37,6 +37,7 @@ import datetime
 @frappe.whitelist()
 def create_salary_component():
     company = frappe.get_all("Company", fields=["name"])
+    salary_component_names = []  # List to hold created component names
     # //Basic Salary
 
     doc = frappe.new_doc("Salary Component")
@@ -62,6 +63,7 @@ def create_salary_component():
     doc.formula_read_only = 1
     # doc.amount = 50000
     doc.s_flexible_benefits = 0
+    salary_component_names.append(doc.salary_component)  # Add to list
     # doc.save()
     doc.insert()
    
@@ -86,6 +88,7 @@ def create_salary_component():
     })
     doc.condition = ""
     doc.s_flexible_benefits = 0
+    salary_component_names.append(doc.salary_component)  # Add to list
     doc.insert()
     # frappe.db.commit()
 
@@ -112,6 +115,7 @@ def create_salary_component():
     doc.formula = "BASIC * 0.1"
     doc.formula_read_only = 1
     doc.s_flexible_benefits = 0
+    salary_component_names.append(doc.salary_component)  # Add to list
     doc.insert()
 
     #PF_Employee (Deduction)
@@ -163,7 +167,10 @@ def create_salary_component():
     doc.formula = "BASIC * 0.1"
     doc.formula_read_only = 1
     doc.s_flexible_benefits = 0
+    salary_component_names.append(doc.salary_component)  # Add to list
     doc.insert() 
+
+    return salary_component_names  # Return the list of created component names
 
 def install():
     create_salary_component()
