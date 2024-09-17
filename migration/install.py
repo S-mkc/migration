@@ -1,6 +1,6 @@
 import frappe
 import datetime
-import nepali_datetime
+# import nepali_datetime
 
 from migration.api import ad_to_bs 
 @frappe.whitelist()
