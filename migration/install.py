@@ -65,7 +65,7 @@ def create_salary_component():
     doc.s_flexible_benefits = 0
     salary_component_names.append(doc.salary_component)  # Add to list
     # doc.save()
-    doc.insert()
+    doc.save()
    
 
     # Grade Amount
@@ -89,7 +89,7 @@ def create_salary_component():
     doc.condition = ""
     doc.s_flexible_benefits = 0
     salary_component_names.append(doc.salary_component)  # Add to list
-    doc.insert()
+    doc.save()
     # frappe.db.commit()
 
     #PF_Employee (Earning)
@@ -116,7 +116,7 @@ def create_salary_component():
     doc.formula_read_only = 1
     doc.s_flexible_benefits = 0
     salary_component_names.append(doc.salary_component)  # Add to list
-    doc.insert()
+    doc.save()
 
     #PF_Employee (Deduction)
 
@@ -142,7 +142,7 @@ def create_salary_component():
     doc.formula = "BASIC * 0.1"
     doc.formula_read_only = 1
     doc.s_flexible_benefits = 0
-    doc.insert()   
+    doc.save()   
 
     #PF_Employeer
     doc = frappe.new_doc("Salary Component")
@@ -168,7 +168,7 @@ def create_salary_component():
     doc.formula_read_only = 1
     doc.s_flexible_benefits = 0
     salary_component_names.append(doc.salary_component)  # Add to list
-    doc.insert() 
+    doc.save() 
 
     return salary_component_names  # Return the list of created component names
 
