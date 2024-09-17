@@ -37,6 +37,8 @@ import datetime
 @frappe.whitelist()
 def create_salary_component():
     company = frappe.get_all("Company", fields=["name"])
+    # //Basic Salary
+
     doc = frappe.new_doc("Salary Component")
     doc.salary_component = "Basic Salary"
     doc.salary_component_abbr = "BASIC"
@@ -86,6 +88,82 @@ def create_salary_component():
     doc.s_flexible_benefits = 0
     doc.insert()
     # frappe.db.commit()
+
+    #PF_Employee (Earning)
+    doc = frappe.new_doc("Salary Component")
+    doc.salary_component = "PF_Employee (Earning)"
+    doc.salary_component_abbr = "PFE_E"
+    doc.type = "Earning"
+    doc.description = "PF Based on Formula"
+    doc.depends_on_payment_days = 0
+    doc.is_tax_applicable = 0
+    doc.deduction_full_tax_on_selected_payroll_date = 0
+    doc.round_to_the_nearest_integer = 0
+    doc.statistical_component = 0
+    doc.do_not_include_in_total = 0
+    doc.remove_if_zero_valued = 1
+    doc.disabled = 0
+    doc.append("accounts", {
+        "company" : company,
+        "account" : "Salary - Y"
+    })
+    doc.condition = ""
+    doc.amount_based_on_formula = 1
+    doc.formula = "BASIC * 0.1"
+    doc.formula_read_only = 1
+    doc.s_flexible_benefits = 0
+    doc.insert()
+
+    #PF_Employee (Deduction)
+
+    doc = frappe.new_doc("Salary Component")
+    doc.salary_component = "PF_Employee (Deduction)"
+    doc.salary_component_abbr = "PFE_D"
+    doc.type = "Deduction"
+    doc.description = "PF Based on Formula"
+    doc.depends_on_payment_days = 0
+    doc.is_tax_applicable = 0
+    doc.deduction_full_tax_on_selected_payroll_date = 0
+    doc.round_to_the_nearest_integer = 0
+    doc.statistical_component = 0
+    doc.do_not_include_in_total = 0
+    doc.remove_if_zero_valued = 1
+    doc.disabled = 0
+    doc.append("accounts", {
+        "company" : company,
+        "account" : "Salary - Y"
+    })
+    doc.condition = ""
+    doc.amount_based_on_formula = 1
+    doc.formula = "BASIC * 0.1"
+    doc.formula_read_only = 1
+    doc.s_flexible_benefits = 0
+    doc.insert()   
+
+    #PF_Employeer
+    doc = frappe.new_doc("Salary Component")
+    doc.salary_component = "PF_Employeer"
+    doc.salary_component_abbr = "PF_Employeer"
+    doc.type = "Deduction"
+    doc.description = "PF Based on Formula"
+    doc.depends_on_payment_days = 0
+    doc.is_tax_applicable = 0
+    doc.deduction_full_tax_on_selected_payroll_date = 0
+    doc.round_to_the_nearest_integer = 0
+    doc.statistical_component = 0
+    doc.do_not_include_in_total = 0
+    doc.remove_if_zero_valued = 1
+    doc.disabled = 0
+    doc.append("accounts", {
+        "company" : company,
+        "account" : "Salary - Y"
+    })
+    doc.condition = ""
+    doc.amount_based_on_formula = 1
+    doc.formula = "BASIC * 0.1"
+    doc.formula_read_only = 1
+    doc.s_flexible_benefits = 0
+    doc.insert() 
 
 def install():
     create_salary_component()
