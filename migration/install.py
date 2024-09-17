@@ -142,6 +142,7 @@ def create_salary_component():
     doc.formula = "BASIC * 0.1"
     doc.formula_read_only = 1
     doc.s_flexible_benefits = 0
+    salary_component_names.append(doc.salary_component)
     doc.save()   
 
     #PF_Employeer
