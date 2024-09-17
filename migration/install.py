@@ -1,6 +1,7 @@
 import frappe
-# import datetime
-# import nepali_datetime
+import datetime
+import nepali_datetime
+
 from migration.api import ad_to_bs 
 @frappe.whitelist()
 def create_salary_component():
@@ -69,6 +70,7 @@ def create_salary_component():
 #     })
 #     fiscal_year.insert()
 def create_fiscal_year():
+    today_ad = datetime.date.today()
     company = frappe.get_all("Company", fields=["name"])
     doc = frappe.new_doc("Fiscal Year")
     doc.year = "Nepal Fiscal Year"

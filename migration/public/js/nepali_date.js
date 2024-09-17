@@ -4,12 +4,14 @@ frappe.ui.form.on('Fiscal Year', {
     // 'date_of_birth': set_bs_date,
     // 'refresh': set_bs_date
 
-set_bs_date (frm) {
+refresh: function (frm) {
     frappe.call({ 
         type: 'GET',
-        method: 'bs-date-utils', 
-        args: { method: 'ad_to_bs', date: frm.doc.date_of_birth},
-        
+        method: 'migration.api.ad_to_bs', 
+        args: { date: frm.doc.date_of_birth },
+        // args: { method: 'ad_to_bs', date: frm.doc.date_of_birth},
+        // args: { method: 'ad_to_bs'},
+        freeze: true,
         callback: function(response) {
             if(response.message.length === 10) {
                 frm.set_value('year_start_date', response.message);
