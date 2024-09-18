@@ -78,13 +78,13 @@ function handle_formula_field_visibility(frm) {
 }
 
 // Function to refresh formula field visibility in the child tables (Earnings/Deductions)
-function refresh_child_table_formula_field(frm, earnings) {
-    frm.fields_dict[formula].grid.get_data().forEach(row => {
-        handle_child_formula_field_visibility(frm, row.doctype, row.name);
-    });
-}
-function refresh_child_table_formula_field(frm, deductions) {
-    frm.fields_dict[formula].grid.get_data().forEach(row => {
+// function refresh_child_table_formula_field(frm, earnings) {
+//     frm.fields_dict[earnings].grid.get_data().forEach(row => {
+//         handle_child_formula_field_visibility(frm, row.doctype, row.name);
+//     });
+// }
+function refresh_child_table_formula_field(frm, child_table) {
+    frm.fields_dict[child_table].grid.get_data().forEach(row => {
         handle_child_formula_field_visibility(frm, row.doctype, row.name);
     });
 }
