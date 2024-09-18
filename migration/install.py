@@ -245,7 +245,7 @@ def create_salary_component():
     doc.amount_based_on_formula = 1
     doc.formula = "ctc-BASIC"
     # doc.set_df_property('formula', 'read_only', 1)
-    doc.cur_frm.fields_dict['formula'].read_only = 1
+    # doc.cur_frm.fields_dict['formula'].read_only = 1
     # doc.set_df_property('formula', 'hidden', 1)
     doc.formula_read_only = 1
     doc.s_flexible_benefits = 0
