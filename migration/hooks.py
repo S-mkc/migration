@@ -31,7 +31,7 @@ app_include_js = "/assets/migration/js/hide.js"
 # include js in doctype views
 doctype_js = {"Expense Claim" : "public/js/expense_claim.js", "Purchase Order" : "public/js/purchase_order.js",
 	     "Out Of Office slip" : "public/js/out_of_office.js",
-         "Salary Component" : "public/js/salary_component.js",
+        #  "Salary Component" : "public/js/salary_component.js",
          "Fiscal Year" : "public/js/nepali_date_custom.js",
          "Fiscal Year" : "public/js/nepali_datepicker.js",
          "Fiscal Year" : "public/js/nepali_date.js"
