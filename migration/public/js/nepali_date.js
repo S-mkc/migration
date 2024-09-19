@@ -21,7 +21,7 @@
 //     });
 // }
 // })
-frappe.ui.form.on('Fiscal year',{
+frappe.ui.form.on('Fiscal Year',{
     refresh(frm) {
         add_nepali_date_picker(frm, "nepali_date");   // if you dont want to add nepali date only
         add_nepali_date_picker(frm, "nepali_date_convert", "english_date_convert");   //  if you want to add nepali date and convert to english date      
