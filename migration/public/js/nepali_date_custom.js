@@ -1,5 +1,6 @@
 function add_nepali_date_picker(frmField, nepali_date_field , english_date_convert_field) {   
     if (typeof $.fn.nepaliDatePicker !== 'undefined') {
+        console.log("Nepali Date Field:", nepali_date_field);
         $(frmField.fields_dict[nepali_date_field].input).nepaliDatePicker({
             ndpYear: true,
             ndpMonth: true,
@@ -29,6 +30,8 @@ function add_nepali_date_picker(frmField, nepali_date_field , english_date_conve
                 var day = date[2];
                 if (year.length == 4 && month.length == 2 && day.length == 2) {
                     frappe.model.set_value(frmField.doctype, frmField.docname, nepali_date_field, nepali_date);
+                    // frappe.model.set_value(frmField.doctype, frmField.docname, nepali_date_field, nepali_date);
+
                 } else {
                     frappe.model.set_value(frmField.doctype, frmField.docname, nepali_date_field, "");
                     $(frmField.fields_dict[nepali_date_field].input).focus();

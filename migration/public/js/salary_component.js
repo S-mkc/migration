@@ -105,3 +105,23 @@ function handle_formula_field_visibility(frm) {
     
 //     frm.refresh_field(cdt);
 // }
+
+
+
+// ((((custom_taxable_salary) * 12) * 0.01)/12) if ((custom_taxable_salary) * 12) <=500000 
+// else (((500000 * 0.01) + (((custom_taxable_salary) * 12) - 500000) * 0.1)/12) 
+// if ((custom_taxable_salary) * 12) <= 700000 
+// else (((500000*0.01) + (200000*0.1) + (((custom_taxable_salary)*12) - 700000) * 0.2)/12) 
+// if ((custom_taxable_salary)*12) <= 1000000 
+// else ((((((custom_taxable_salary)*12)*0.2)*0.15) + (500000*0.01) + (200000*0.1) + (300000*0.2) 
+// + ((((custom_taxable_salary)*12) - (((custom_taxable_salary)*12)*0.2) - 1000000)) *0.3)/12) 
+// if ((custom_taxable_salary)*12)<=2000000 
+// else ((((((custom_taxable_salary)*12)*0.2)*0.15) + (500000*0.01) + (200000*0.1) + (300000*0.2) 
+// + ((1000000*0.3)) 
+// if (((custom_taxable_salary)*12) - ((((custom_taxable_salary)*12)*0.2) + (500000*0.01) + (200000*0.1) + (300000*0.2))))
+// (((custom_taxable_salary)*12) - (((custom_taxable_salary)*12)*0.2) - 2000000) * 0.36)/12) 
+// if ((custom_taxable_salary)*12)<=5000000 
+// else ((((((custom_taxable_salary)*12)*0.2)*0.15) + (500000*0.01) + (200000*0.1) + 
+// (300000*0.2) + (1000000*0.3) + (3000000*0.36) + 
+// ((((custom_taxable_salary)*12) - (((custom_taxable_salary)*12)*0.2) - 5000000)) *0.39)/12) 
+// if ((custom_taxable_salary)*12)>5000000 else -1

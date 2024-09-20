@@ -23,10 +23,13 @@
 // })
 frappe.ui.form.on('Fiscal Year',{
     refresh(frm) {
-        add_nepali_date_picker(frm, "nepali_date");   // if you dont want to add nepali date only
+        // frm.fields_dict['year_start_date'].input.hide();
+        add_nepali_date_picker(frm, "nepali_date");
+        add_nepali_date_picker(frm, "year_start_date")   // if you dont want to add nepali date only
         add_nepali_date_picker(frm, "nepali_date_convert", "english_date_convert");   //  if you want to add nepali date and convert to english date      
         // add_nepali_date_picker(frm, "nepali_date_time_convert", "english_datetime_convert");  // convert in time field
         add_nepali_date_picker(frm, "nepali_date_convert_one", "english_date_convert_one"); 
+        add_nepali_date_picker(frm, "nepali_date_convert", "year_start_date")
     },
     english_date_convert(frm) {  
         frappe.model.set_value(frm.doctype, frm.docname, "nepali_date_convert", NepaliFunctions.AD2BS(frm.doc.english_date_convert.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD"));
