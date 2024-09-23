@@ -252,7 +252,7 @@ def create_salary_component():
     # doc.cur_frm.fields_dict['formula'].read_only = 1
     # doc.set_df_property('formula', 'hidden', 1)
     doc.formula_read_only = 1
-    doc.s_flexible_benefits = 0
+    # doc.s_flexible_benefits = 0
     salary_component_names.append(doc.salary_component)  # Add to list
     doc.save()
 
@@ -324,10 +324,10 @@ def create_salary_component():
     })
     doc.condition = ""
     doc.amount_based_on_formula = 0
-    doc.s_flexible_benefits = 0
+    # doc.s_flexible_benefits = 0
     salary_component_names.append(doc.salary_component)  # Add to list
     doc.save()
-
+    
     #Overtime
     doc = frappe.new_doc("Salary Component")
     doc.salary_component = "Overtime"
@@ -427,6 +427,7 @@ def create_salary_component():
     doc.type = "Earning"
     doc.description = "Dearness Allowance"
     doc.depends_on_payment_days = 0
+    doc.is_tax_applicable = 0
     doc.deduction_full_tax_on_selected_payroll_date = 0
     doc.round_to_the_nearest_integer = 0
     doc.statistical_component = 0
