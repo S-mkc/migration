@@ -308,18 +308,25 @@ def create_salary_component():
 
         if annual_salary <= 500000:
             tax = (annual_salary * 0.01) / 12
+            doc.formula = tax
         elif annual_salary <= 700000:
             tax = ((500000 * 0.01) + ((annual_salary - 500000) * 0.1)) / 12
+            doc.formula = tax
         elif annual_salary <= 1000000:
             tax = ((500000 * 0.01) + (200000 * 0.1) + ((annual_salary - 700000) * 0.2)) / 12
+            doc.formula = tax
         elif annual_salary <= 2000000:
             tax = (((annual_salary * 0.2) * 0.15) + (500000 * 0.01) + (200000 * 0.1) + (300000 * 0.2) + ((annual_salary - 1000000) * 0.3)) / 12
+            doc.formula = tax
         elif annual_salary <= 5000000:
             tax = (((annual_salary * 0.2) * 0.15) + (500000 * 0.01) + (200000 * 0.1) + (300000 * 0.2) + (1000000 * 0.3) + ((annual_salary - 2000000) * 0.36)) / 12
+            doc.formula = tax
         else:
             tax = (((annual_salary * 0.2) * 0.15) + (500000 * 0.01) + (200000 * 0.1) + (300000 * 0.2) + (1000000 * 0.3) + (3000000 * 0.36) + ((annual_salary - 5000000) * 0.39)) / 12
+            doc.formula = tax
 
-        doc.formula = tax
+   
+    # frappe.db.set_value("Salary Slip", "Income Tax (Unmarried)" , "formula", tax)
     doc.s_flexible_benefits = 0
     salary_component_names.append(doc.salary_component)  # Add to list
     doc.save()
