@@ -34,7 +34,8 @@ doctype_js = {"Expense Claim" : "public/js/expense_claim.js", "Purchase Order" :
         #  "Salary Component" : "public/js/salary_component.js",
          "Fiscal Year" : "public/js/nepali_date_custom.js",
          "Fiscal Year" : "public/js/nepali_datepicker.js",
-         "Fiscal Year" : "public/js/nepali_date.js"
+         "Fiscal Year" : "public/js/nepali_date.js",
+         "Salary Slip" : "public/js/nepali_date.js"
          }
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
