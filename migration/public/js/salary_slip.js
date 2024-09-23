@@ -23,6 +23,7 @@ frappe.ui.form.on('Salary Slip', {
     // before_save: function(frm) {
     //     calculate_selected_earnings(frm);
     // },
+    
 
 });
 
@@ -54,3 +55,6 @@ function calculate_selected_earnings(frm) {
     cur_frm.trigger('Income Tax (Married)');
     
 }
+
+
+

@@ -21,6 +21,8 @@
 //     });
 // }
 // })
+// import { add_nepali_date_picker } from './nepali_date_custom/add_nepali_date_picker'
+
 frappe.ui.form.on('Fiscal Year',{
     refresh(frm) {
         // frm.fields_dict['year_start_date'].input.hide();
@@ -45,10 +47,11 @@ frappe.ui.form.on('Fiscal Year',{
     }
 });
 
-frappe.ui.form.on("Salary Slip", {
+frappe.ui.form.on('Salary Slip', {
     refresh(frm){
-    add_nepali_date_picker(frm, "custom_nepali_start_date", "start_date");
-    add_nepali_date_picker(frm, "custom_nepali_end_date", "end_date")
+        add_nepali_date_picker(frm, "custom_nepali_start_date")
+        add_nepali_date_picker(frm, "custom_nepali_start_date", "start_date");
+        add_nepali_date_picker(frm, "custom_nepali_end_date", "end_date")
     },
     start_date(frm){
         frappe.model.set_value(frm.doctype, frm.docname, "custom_nepali_start_date", NepaliFunctions.AD2BS(frm.doc.start_date.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD"));
