@@ -301,7 +301,7 @@ def create_salary_component():
     })
     doc.condition = ""
     doc.amount_based_on_formula = 1
-    doc.formula = ((((custom_taxable_salary) * 12) * 0.01)/12) if (((int(custom_taxable_salary)) * 12) <=500000) else (((500000 * 0.01) + (((custom_taxable_salary) * 12) - 500000) * 0.1)/12) 
+    doc.formula = ((((custom_taxable_salary) * 12) * 0.01)/12) if (((custom_taxable_salary) * 12) <=500000) else (((500000 * 0.01) + (((custom_taxable_salary) * 12) - 500000) * 0.1)/12) 
     doc.s_flexible_benefits = 0
     salary_component_names.append(doc.salary_component)  # Add to list
     doc.save()
