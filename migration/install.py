@@ -34,7 +34,9 @@ from migration.api import create_income_tax_slab
 #     })
 #     doc.insert()
 company = frappe.get_all("Company", fields=["name"])
-custom_taxable_salary = frappe.get_all("Employee", fields=["ctc"])
+# custom_taxable_salary = frappe.get_all("Employee", fields=["ctc"])
+custom_taxable_salary = frappe.db.get_value("Employee", filters=None, fieldname="ctc", as_dict=False)
+
 @frappe.whitelist()
 def create_salary_component():
 
