@@ -116,3 +116,13 @@ def create_income_tax_slab():
     doc.save()
     doc.reload()
     doc.submit()
+
+    print_settings = frappe.get_single("Print Settings")
+
+    # Enable allow_print_for_cancelled if it's not already set
+    if not print_settings.allow_print_for_cancelled:
+        print_settings.allow_print_for_cancelled = 1  # Enable the setting
+        print_settings.save()
+        frappe.msgprint("Printing for cancelled invoices has been enabled.")
+    else:
+        frappe.msgprint("Printing for cancelled invoices was already enabled.")

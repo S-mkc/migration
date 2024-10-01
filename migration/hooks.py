@@ -88,7 +88,8 @@ before_install = "migration.install.install"
 # ------------
 
 # before_uninstall = "migration.uninstall.before_uninstall"
-before_uninstall = "migration.uninstall.delete_salary_component"
+# before_uninstall = "migration.uninstall.delete_salaryy_component"
+before_uninstall = "migration.uninstall.uninstall"
 # after_uninstall = "migration.uninstall.after_uninstall"
 
 # Integration Setup
