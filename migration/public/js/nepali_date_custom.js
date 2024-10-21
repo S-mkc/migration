@@ -17,13 +17,13 @@ function add_nepali_date_picker(frmField, nepali_date_field , english_date_conve
         }); 
 
         // set max length for nepali date field
-        $(frmField.fields_dict[nepali_date_field].input).attr("maxlength", 10);
+        $(frmField.fields_dict[nepali_date_field].input);
 
         $(frmField.fields_dict[nepali_date_field].input).on("change", function() {
             var nepali_date = $(this).val();
             frappe.model.set_value(frmField.doctype, frmField.docname, nepali_date_field, nepali_date);
         
-            if (/^[0-9-]+$/.test(nepali_date) && nepali_date.length == 10) {
+            if (/^[0-9-]+$/.test(nepali_date)) {
                 var date = nepali_date.split("-");
                 var year = date[0];
                 var month = date[1];
@@ -36,13 +36,43 @@ function add_nepali_date_picker(frmField, nepali_date_field , english_date_conve
                     frappe.model.set_value(frmField.doctype, frmField.docname, nepali_date_field, "");
                     $(frmField.fields_dict[nepali_date_field].input).focus();
                 }
-            } else {
-                frappe.model.set_value(frmField.doctype, frmField.docname, nepali_date_field, "");
-                $(frmField.fields_dict[nepali_date_field].input).focus();
+            // } else {
+            //     frappe.model.set_value(frmField.doctype, frmField.docname, nepali_date_field, "");
+            //     $(frmField.fields_dict[nepali_date_field].input).focus();
+            // }
             }
         });        
 
     }
-   
-    
 }
+
+
+// function add_nepali_date_picker(frm, nepali_date_field, docname) {
+//     const inputElement = $(`input[data-fieldname="${nepali_date_field}"][data-docname="${docname}"]`);
+
+//     if (inputElement.length) {
+//         inputElement.nepaliDatePicker({
+//             ndpYear: true,
+//             ndpMonth: true,
+//             ndpYearCount: 10,
+//             onChange: function(e) {
+//                 // Set the Nepali date in the field
+//                 frappe.model.set_value('Holiday', docname, nepali_date_field, e.bs);
+//             }
+//         });
+
+//         inputElement.on("change", function() {
+//             const nepaliDate = $(this).val();
+//             // Validate date format (e.g., YYYY-MM-DD)
+//             if (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(nepaliDate)) {
+//                 frappe.model.set_value('Holiday', docname, nepali_date_field, nepaliDate);
+//             } else {
+//                 frappe.model.set_value('Holiday', docname, nepali_date_field, "");
+//                 $(this).focus();
+//                 frappe.msgprint("Please enter a valid date in YYYY-MM-DD format.");
+//             }
+//         });
+//     } else {
+//         console.error("Nepali Date Picker input element not found for docname:", docname);
+//     }
+// }

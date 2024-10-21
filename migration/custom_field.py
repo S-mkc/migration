@@ -48,8 +48,19 @@ def create_custom_fields():
             # Add more fields as needed
         ],
         "Salary Slip": [
-            {"fieldname": "nepali start date", "lable": "Nepali Start Date", "fieldtype": "Currency", "insert_after": "start_date", "reqd": 0},
-            {"fieldname": "nepali end date", "label": "Nepali End Date", "fieldtype": "Currency", "insert_after": "end_date"}
+            {"fieldname": "nepali_start_date", "label": "Nepali Start Date", "fieldtype": "Data", "insert_after": "start_date"},
+            {"fieldname": "nepali_end_date", "label": "Nepali End Date", "fieldtype": "Data", "insert_after": "end_date"}
+        ],
+        "Attendance": [
+            {"fieldname": "nepali_date", "label": "Nepali Date", "field_type": "Data", "insert_after": "attendance_date"}
+        ],
+        "Fiscal Year": [
+            {"fieldname": "nepali_year_start_date", "label": "Nepali Year Start Date", "fieldtype": "Data", "insert_after": "year_start_date"},
+            {"fieldname": "nepali_year_end_date", "label": "Nepali Year end Date", "fieldtype": "Data", "insert_after": "year_end_date"}
+        ],
+        "Holiday List":[
+            {"fieldname": "nepali_from_date", "label": "Nepali From Date", "fieldtype": "Data", "insert_after": "total_holidays"},
+            {"fieldname": "nepali_to_date", "label": "Nepali To Date", "fieldtype": "Data", "insert_after": "nepali_from_date"}
         ]
     }
 

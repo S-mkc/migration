@@ -280,7 +280,7 @@ def create_salary_component():
     })
     doc.condition = ""
     doc.amount_based_on_formula = 0
-    doc.s_flexible_benefits = 0
+    # doc.s_flexible_benefits = 0
     salary_component_names.append(doc.salary_component)  # Add to list
     doc.save()
 
@@ -322,6 +322,7 @@ def create_salary_component():
     })
     doc.condition = ""
     doc.amount_based_on_formula = 1
+    
 
     employees = frappe.get_all("Employee", fields=["name", "ctc"])
 
@@ -366,7 +367,7 @@ def create_salary_component():
         tax = 0 
     # Set the formula as a string
     doc.formula = tax
-
+    doc.s_flexible_benefits = 1
     # Log the computed values for debugging
     frappe.log(f"Custom Taxable Salary: {tax}")
     frappe.log(f"Annual Salary: {ctc*12}")
@@ -543,11 +544,15 @@ def create_salary_component():
         frappe.msgprint(_("Field already exists."))
     return salary_component_names  # Return the list of created component names
 
-
+from migration.api import create_fiscal_year
+from migration.custom_code.holidaye_list import execute
+from migration.custom_code.holidaye_list import get_holiday_dates_between
 def install():
     create_salary_component()
     create_income_tax_slab()
     create_custom_fields()
-    # create_fiscal_year()
+    create_fiscal_year()
+    execute()
+    get_holiday_dates_between("2081-02-05", "2081-02-02", "2081-02-01")
 
     # return create_salary_component()

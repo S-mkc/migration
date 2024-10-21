@@ -95,6 +95,7 @@
 import frappe
 # company = frappe.get_all("Company", fields=["name"])
 # from migration.install import company
+
 company = frappe.get_all("Company", fields=["name"])
 @frappe.whitelist()
 def create_income_tax_slab():
@@ -114,9 +115,20 @@ def create_income_tax_slab():
     })
     # doc.Docstatus = 1
     doc.save()
-    doc.reload()
-    doc.submit()
-
+    submit_doc(doc)
+    # doc.reload()
+    # doc.submit()
+    # doc.reload()
+  
+def submit_doc(doc):
+    try:
+        doc.submit()
+    except frappe.exceptions.TimestampMismatchError:
+        doc.reload()
+        
+        
+        
+        
     print_settings = frappe.get_single("Print Settings")
 
     # Enable allow_print_for_cancelled if it's not already set
@@ -126,3 +138,16 @@ def create_income_tax_slab():
         frappe.msgprint("Printing for cancelled invoices has been enabled.")
     else:
         frappe.msgprint("Printing for cancelled invoices was already enabled.")
+
+
+@frappe.whitelist()
+def create_fiscal_year():
+    doc = frappe.new_doc("Fiscal Year")
+    doc.year = "Nepal Fiscal Year"
+    doc.disabled = 0
+    doc.is_short_year = 0
+    # if(doc.name)
+    doc.year_start_date = "2025-07-16"
+    doc.year_end_date = "2026-07-15"
+    # doc.year_end_date = ""
+    doc.save()

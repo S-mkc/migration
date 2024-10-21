@@ -8,11 +8,21 @@ app_license = "mit"
 
 # Includes in <head>
 # ------------------
-
+# before_migrate = "migration.custom_code.holidaye_list.get_weekly_off_dates"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/migration/css/migration.css"
+app_include_css = ["/assets/migration/css/nepali_datepicker.css",
+                #    "/assets/migration/css/nepali_calendar.css"]
+]
 # app_include_js = "/assets/migration/js/migration.js"
-app_include_js = "/assets/migration/js/hide.js"
+# app_include_js = "/assets/migration/js/hide.js"
+app_include_js = [
+    "/assets/migration/js/nepali_datepicker.js",
+    "/assets/migration/js/nepali_date_custom.js",
+    # "/assets/migration/js/nepali_calander.js",
+    # "/assets/migration/js/nepali_date.js"
+    # "/assets/nepalidate/js/nepali_date_custom.js"
+]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/migration/css/migration.css"
@@ -37,10 +47,14 @@ doctype_js = {"Expense Claim" : "public/js/expense_claim.js", "Purchase Order" :
          "Fiscal Year" : "public/js/nepali_date.js",
         #  "Salary Slip" : "public/js/nepali_date_custom.js",
         #  "Salary Slip" : "public/js/nepali_datepicker.js",
-         "Salary Slip" : "public/js/nepali_date.js"
+         "Salary Slip" : "public/js/nepali_date.js",
+         "Attendance" : "public/js/nepali_date.js",
+         "Holiday List": "public/js/nepali_date.js",
+         "Holiday": "public/js/nepali_date.js"
          }
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+doctype_list_js = {"Attendance" : "public/js/nepali_date.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
@@ -117,7 +131,7 @@ before_uninstall = "migration.uninstall.uninstall"
 # Permissions
 # -----------
 # Permissions evaluated in scripted ways
-
+# before_migrate = "migration.custom_field.create_custom_fields"
 # permission_query_conditions = {
 # 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
 # }
