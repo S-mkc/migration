@@ -61,6 +61,9 @@ def create_custom_fields():
         "Holiday List":[
             {"fieldname": "nepali_from_date", "label": "Nepali From Date", "fieldtype": "Data", "insert_after": "total_holidays"},
             {"fieldname": "nepali_to_date", "label": "Nepali To Date", "fieldtype": "Data", "insert_after": "nepali_from_date"}
+        ],
+        "Leave Allocation":[
+            
         ]
     }
 
