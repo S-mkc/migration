@@ -98,9 +98,31 @@ frappe.ui.form.on('Leave Allocation', {
         frappe.model.set_value(frm.doctype, frm.docname, "from_nepali_date_leave_allocation", NepaliFunctions.AD2BS(frm.doc.from_date.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD")); 
     },
     to_date(frm){
-        frappe.model.set_value(frm.doctype, frm.docname, "to_nepali_date_leave_allocation", NepaliFunctions.AD2BS(frm.doc.from_date.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD")); 
-    }
+        frappe.model.set_value(frm.doctype, frm.docname, "to_nepali_date_leave_allocation", NepaliFunctions.AD2BS(frm.doc.to_date.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD")); 
+    },
+    to_nepali_date_leave_allocation(frm){
+        frappe.model.set_value(frm.doctype, frm.docname, "to_date", NepaliFunctions.BS2AD(frm.doc.to_nepali_date_leave_allocation.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD")); 
+    },
 });
+
+frappe.ui.form.on('Leave Application',{
+    refresh(frm){
+        add_nepali_date_picker(frm, "from_nepali_date_leave_application", "from_date")
+        add_nepali_date_picker(frm, "to_nepali_date_leave_application", "to_date")
+    },
+    from_date(frm){
+        frappe.model.set_value(frm.doctype, frm.docname, "from_nepali_date_leave_application", NepaliFunctions.AD2BS(frm.doc.from_date.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD")); 
+    },
+    to_date(frm){
+        frappe.model.set_value(frm.doctype, frm.docname, "to_nepali_date_leave_application", NepaliFunctions.AD2BS(frm.doc.to_date.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD")); 
+    },
+    from_nepali_date_leave_application(frm){
+        frappe.model.set_value(frm.doctype, frm.docname, "from_date", NepaliFunctions.BS2AD(frm.doc.from_nepali_date_leave_application.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD")); 
+    },
+    to_nepali_date_leave_application(frm){
+        frappe.model.set_value(frm.doctype, frm.docname, "to_date", NepaliFunctions.BS2AD(frm.doc.to_nepali_date_leave_application.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD")); 
+    },
+})
 
 frappe.ui.form.on('Holiday List', {
     refresh(frm){
@@ -161,32 +183,32 @@ frappe.ui.form.on('Holiday List', {
 //     }
 // });
 
-frappe.ui.form.on('Holiday List', {
-    get_weekly_off_dates: function(frm) {
-        const weeklyOffDay = frm.doc.weekly_off; // Get the selected weekly off day
-        const holidays = frm.doc.holidays || []; // Get existing holidays
+// frappe.ui.form.on('Holiday List', {
+//     get_weekly_off_dates: function(frm) {
+//         const weeklyOffDay = frm.doc.weekly_off; // Get the selected weekly off day
+//         const holidays = frm.doc.holidays || []; // Get existing holidays
 
-        holidays.length = 0; // Clear existing holidays if needed
+//         holidays.length = 0; // Clear existing holidays if needed
 
-        const startDate = frm.doc.from_date; // Assume you have a start date
-        const endDate = frm.doc.to_date; // Assume you have an end date
+//         const startDate = frm.doc.from_date; // Assume you have a start date
+//         const endDate = frm.doc.to_date; // Assume you have an end date
 
-        let currentDate = new Date(startDate);
-        const end = new Date(endDate);
+//         let currentDate = new Date(startDate);
+//         const end = new Date(endDate);
         
-        while (currentDate <= end) {
-            if (currentDate.getDay() === getDayFromString(weeklyOffDay)) {
-                holidays.push({
-                    // holiday_date: currentDate.toISOString().split('T')[0], // Format to YYYY-MM-DD
-                    custom_nepali_dae: NepaliFunctions.AD2BS(currentDate.toISOString().split('T')[0], "YYYY-MM-DD", "YYYY-MM-DD")
-                });
-            }
-            currentDate.setDate(currentDate.getDate() + 1); // Move to the next day
-        }
+//         while (currentDate <= end) {
+//             if (currentDate.getDay() === getDayFromString(weeklyOffDay)) {
+//                 holidays.push({
+//                     // holiday_date: currentDate.toISOString().split('T')[0], // Format to YYYY-MM-DD
+//                     custom_nepali_dae: NepaliFunctions.AD2BS(currentDate.toISOString().split('T')[0], "YYYY-MM-DD", "YYYY-MM-DD")
+//                 });
+//             }
+//             currentDate.setDate(currentDate.getDate() + 1); // Move to the next day
+//         }
 
-        frm.refresh_field('holidays');
-    }
-});
+//         frm.refresh_field('holidays');
+//     }
+// });
 
 frappe.listview_settings['Attendance'] = {
     on_render: function(doc, $element) {
@@ -208,6 +230,17 @@ frappe.listview_settings['Attendance'] = {
 };
 
 
+frappe.ui.form.on("Holiday",{
+    refresh(frm){
 
+    },
+    holiday_date(frm, cdt, cdn){
+        my_child = frappe.get_doc(cdt, cdn)
+        frm.refresh_field("nepali_date_holiday")
+        frappe.model.set_value(cdt, cdn, "nepali_date_holiday", NepaliFunctions.AD2BS(my_child.holiday_date, "YYYY-MM-DD", "YYYY-MM-DD")); 
+        frappe.model.set_value(cdt, cdn, "holiday_date", NepaliFunctions.BS2AD(my_child.nepali_date_holiday, "YYYY-MM-DD", "YYYY-MM-DD")); 
+        frm.refresh_field("nepali_date_holiday")
+    } 
+})
 
 

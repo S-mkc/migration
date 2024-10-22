@@ -49,6 +49,8 @@ doctype_js = {"Expense Claim" : "public/js/expense_claim.js", "Purchase Order" :
         #  "Salary Slip" : "public/js/nepali_datepicker.js",
          "Salary Slip" : "public/js/nepali_date.js",
          "Attendance" : "public/js/nepali_date.js",
+         "Leave Allocation": "public/js/nepali_date.js",
+         "Leave Application": "public/js/nepali_date.js",
          "Holiday List": "public/js/nepali_date.js",
          "Holiday": "public/js/nepali_date.js"
          }
@@ -272,3 +274,4 @@ override_whitelisted_methods = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = ["Custom Field", "Custom Script", "Report"]

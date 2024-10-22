@@ -40,14 +40,22 @@ def delete_custom_field():
     for field in custom_fields:
         fieldname = field["fieldname"]
         doctype_name = field["dt"]
-        
-        if frappe.db.exists("Custom Field", {"dt": doctype_name, "fieldname": fieldname}):
-            # Delete the custom field
-            frappe.delete_doc("Custom Field", {"dt": doctype_name, "fieldname": fieldname})
-            # frappe.db.sql(f"""DELETE FROM `tabEmployee` WHERE dt = %s AND fieldname = %s""", (doctype_name , fieldname))
+        custom_field = frappe.get_value("Custom Field", {"dt": doctype_name, "fieldname": fieldname}, "name")
+
+        if custom_field:
+            # Delete the custom field using its name
+            frappe.delete_doc("Custom Field", custom_field)
             frappe.msgprint(f"Custom Field '{fieldname}' deleted successfully from {doctype_name}!")
         else:
             frappe.msgprint(f"Custom Field '{fieldname}' doesn't exist in {doctype_name}.")
+
+        # if frappe.db.exists("Custom Field", {"dt": doctype_name, "fieldname": fieldname}):
+        #     # Delete the custom field
+        #     frappe.delete_doc("Custom Field", {"dt": doctype_name, "fieldname": fieldname})
+        #     # frappe.db.sql(f"""DELETE FROM `tabEmployee` WHERE dt = %s AND fieldname = %s""", (doctype_name , fieldname))
+        #     frappe.msgprint(f"Custom Field '{fieldname}' deleted successfully from {doctype_name}!")
+        # else:
+        #     frappe.msgprint(f"Custom Field '{fieldname}' doesn't exist in {doctype_name}.")
 
 def uninstall():
     delete_salary_component()

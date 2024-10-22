@@ -37,6 +37,7 @@ from migration.custom_field import create_custom_fields
 #     })
 #     doc.insert()
 company = frappe.get_all("Company", fields=["name"])
+salary_account = frappe.get_value("Account", {"name": ["like", "%Salary%"]}, "name")
 # custom_taxable_salary = frappe.get_all("Employee", fields=["ctc"])
 # custom_taxable_salary = frappe.db.get_value("Employee", filters=None, fieldname="ctc", as_dict=False)
 
@@ -62,7 +63,7 @@ def create_salary_component():
     doc.condition = ""
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.amount_based_on_formula = 1
     doc.formula = "ctc * 0.083"
@@ -90,7 +91,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.amount_based_on_formula = 1
     doc.formula = "BASIC * 0.083"
@@ -116,7 +117,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 1
@@ -143,7 +144,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 1
@@ -169,7 +170,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 1
@@ -195,7 +196,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 1
@@ -221,7 +222,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 1
@@ -247,7 +248,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 1
@@ -276,7 +277,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 0
@@ -318,7 +319,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company": company,  # Replace with actual company variable
-        "account": "Salary - Y"
+        "account": salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 1
@@ -369,9 +370,9 @@ def create_salary_component():
     doc.formula = tax
     doc.s_flexible_benefits = 1
     # Log the computed values for debugging
-    frappe.log(f"Custom Taxable Salary: {tax}")
-    frappe.log(f"Annual Salary: {ctc*12}")
-    frappe.log(f"Tax Formula: {doc.formula}")
+    # frappe.log(f"Custom Taxable Salary: {tax}")
+    # frappe.log(f"Annual Salary: {ctc*12}")
+    # frappe.log(f"Tax Formula: {doc.formula}")
 
     # Save the document
     doc.save()
@@ -393,7 +394,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 0
@@ -416,7 +417,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 0
@@ -439,7 +440,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 0
@@ -462,7 +463,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 0
@@ -486,7 +487,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 0
@@ -509,7 +510,7 @@ def create_salary_component():
     doc.disabled = 0
     doc.append("accounts", {
         "company" : company,
-        "account" : "Salary - Y"
+        "account" : salary_account
     })
     doc.condition = ""
     doc.amount_based_on_formula = 1
@@ -544,15 +545,34 @@ def create_salary_component():
         frappe.msgprint(_("Field already exists."))
     return salary_component_names  # Return the list of created component names
 
+def create_leave_type():
+
+    # Home Leave 
+    doc = frappe.new_doc("Leave Type")
+    doc.leave_type_name = "Annual/Home Leave"
+    doc.max_leaves_allowed = "18"
+    doc.applicable_after = "20"
+    doc.max_continuous_days_allowed = ""
+    doc.include_holiday = 1
+    
+    doc.is_earned_leave = 1
+    doc.earned_leave_frequency = "Monthly"
+    doc.allocate_on_day = "First Day"
+    doc.rounding = "0.5"
+    doc.save()
+
 from migration.api import create_fiscal_year
-from migration.custom_code.holidaye_list import execute
-from migration.custom_code.holidaye_list import get_holiday_dates_between
+# from migration.custom_code.holidaye_list import execute
+# from migration.custom_code.holidaye_list import get_holiday_dates_between
+from migration.migration.report.purchase_register_vat.purchase_register import execute
 def install():
     create_salary_component()
     create_income_tax_slab()
     create_custom_fields()
     create_fiscal_year()
+    create_leave_type()
     execute()
-    get_holiday_dates_between("2081-02-05", "2081-02-02", "2081-02-01")
+    # execute()
+    # get_holiday_dates_between("2081-02-05", "2081-02-02", "2081-02-01")
 
     # return create_salary_component()

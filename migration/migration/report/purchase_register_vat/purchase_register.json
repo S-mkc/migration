@@ -1,0 +1,18 @@
+{
+    "doctype": "Report",
+    "name": "Materialized Sales Report",
+    "ref_doctype": "Sales Invoice Item",
+    "report_type": "Script Report",
+    "module": "Your Custom App Name",
+    "is_standard": "Yes",
+    "owner": "Administrator",
+    "roles": [
+        {
+            "role": "Sales User"
+        },
+        {
+            "role": "Sales Manager"
+        }
+    ],
+    "script": "import frappe\n\n\ndef get_columns():\n    return [\n        {'label': 'Item Code', 'fieldname': 'item_code', 'fieldtype': 'Link', 'options': 'Item', 'width': 150},\n        {'label': 'Total Quantity Sold', 'fieldname': 'total_qty_sold', 'fieldtype': 'Float', 'width': 150},\n        {'label': 'Total Sales Amount', 'fieldname': 'total_sales_amount', 'fieldtype': 'Currency', 'width': 150},\n        {'label': 'Total Profit', 'fieldname': 'total_profit', 'fieldtype': 'Currency', 'width': 150}\n    ]\n\n\ndef get_data(filters):\n    conditions = ''\n    if filters.get('item_code'):\n        conditions += ' AND si.item_code = %(item_code)s'\n\n    query = f'''\n        SELECT\n            si.item_code,\n            SUM(si.qty) AS total_qty_sold,\n            SUM(si.base_grand_total) AS total_sales_amount,\n            SUM(si.base_grand_total - si.cost) AS total_profit\n        FROM\n            `tabSales Invoice Item` si\n        JOIN\n            `tabSales Invoice` s ON si.parent = s.name\n        WHERE\n            s.docstatus = 1\n            {conditions}\n        GROUP BY\n            si.item_code\n    '''\n\n    return frappe.db.sql(query, filters, as_dict=True)\n\n@frappe.whitelist()\ndef execute(filters=None):\n    columns = get_columns()\n    data = get_data(filters or {})\n    return columns, data\n"
+}
