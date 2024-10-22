@@ -89,6 +89,19 @@ frappe.ui.form.on('Attendance',{
     }
 });
 
+frappe.ui.form.on('Leave Allocation', {
+    refresh(frm){
+        add_nepali_date_picker(frm, "from_nepali_date_leave_allocation", "from_date")
+        add_nepali_date_picker(frm, "to_nepali_date_leave_allocation", "to_date")
+    },
+    from_date(frm){
+        frappe.model.set_value(frm.doctype, frm.docname, "from_nepali_date_leave_allocation", NepaliFunctions.AD2BS(frm.doc.from_date.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD")); 
+    },
+    to_date(frm){
+        frappe.model.set_value(frm.doctype, frm.docname, "to_nepali_date_leave_allocation", NepaliFunctions.AD2BS(frm.doc.from_date.split(" ")[0], "YYYY-MM-DD", "YYYY-MM-DD")); 
+    }
+});
+
 frappe.ui.form.on('Holiday List', {
     refresh(frm){
         add_nepali_date_picker(frm, "nepali_from_date", "from_date")

@@ -63,8 +63,9 @@ def create_custom_fields():
             {"fieldname": "nepali_to_date", "label": "Nepali To Date", "fieldtype": "Data", "insert_after": "nepali_from_date"}
         ],
         "Leave Allocation":[
-            
-        ]
+            {"fieldname": "from_nepali_date_leave_allocation", "label": "From Date BS", "fieldtype": "Data", "insert_after": "from_date"},
+            {"fieldname": "to_nepali_date_leave_allocation", "label": "To Date BS", "fieldtype": "Data", "insert_after": "to_date"}
+        ],
     }
 
     created_fields = []  # List to store created fields
